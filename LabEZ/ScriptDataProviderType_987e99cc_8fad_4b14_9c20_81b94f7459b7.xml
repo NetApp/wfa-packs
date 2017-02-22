@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<scriptDataProviderType scriptLanguage="POWER_SHELL" productType="All Clusters" productVersion="1.0" method="SCRIPT" defaultPort="101" defaultTimeoutInSeconds="600" defaultIntervalInMinutes="1440">
+    <certification>NONE</certification>
+    <uuid>987e99cc-8fad-4b14-9c20-81b94f7459b7</uuid>
+    <version>1.0.0</version>
+    <scheme>fcd9c6f7-b161-4988-beed-ea4a0764a2cd</scheme>
+    <instructions></instructions>
+    <script>[System.Threading.Thread]::CurrentThread.CurrentCulture=&quot;en-US&quot;
+
+if ($PSVersionTable.PSVersion.Major -le '2')
+{
+      throw(&quot;Minimum PowerShell version required is 3.0&quot;)
+}
+
+###### Create the Logger Configuration WFA   ######
+#Load the assembley from your dll location
+$PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
+$dllLocation=$PSScriptRoot.Substring(0, $($PSScriptRoot.Length - 24)) + &quot;PoSH\Modules\DataONTAP\log4net.dll&quot;
+[void][Reflection.Assembly]::LoadFrom($dllLocation)
+#Define your logging pattern. See more about it here: http://logging.apache.org/log4net/release/sdk/log4net.Layout.PatternLayout.html
+$pattern=&quot;%d %w %-5p %c : %m%n&quot;
+#Reset the log4net configuration
+[log4net.LogManager]::ResetConfiguration()
+#Create the Logging file for every single Datasource based on the Hostname.
+$DSHostName = &quot;LabEZ&quot;
+$logFile=$PSScriptRoot.Substring(0, $($PSScriptRoot.Length - 8)) + &quot;\log\&quot; + $DSHostName +&quot;.log&quot;
+New-Item -Path $logFile -type file -Force
+#Create the log4net config Appender
+$Appender = new-object log4net.Appender.FileAppender
+$Appender.File = $logFile
+$Appender.Layout = new-object log4net.Layout.PatternLayout($pattern)
+$Appender.Threshold = [log4net.Core.Level]::All
+$Appender.ActivateOptions()
+[log4net.Config.BasicConfigurator]::Configure($Appender)
+#Create Logger for the DataSource Type Name. You can actually put anything
+$logg = [log4net.LogManager]::GetLogger(&quot;[LabEZ]&quot;)
+
+###### Logger is ready   #####
+
+$logg.Info(&quot;====== Data Source acquisition begins now =======&quot;)
+
+$clusterFile = &quot;./clusters.csv&quot;
+$nodeFile = &quot;./nodes.csv&quot;
+$node_mgmtFile = &quot;./node_mgmt_ip.csv&quot;
+$node_spFile = &quot;./node_sp_ip.csv&quot;
+
+New-Item -Path $clusterFile -type file -force
+New-Item -Path $nodeFile -type file -force
+New-Item -Path $node_mgmtFile -type file -force
+New-Item -Path $node_spFile -type file -force
+
+$PSModule = $PSScriptRoot.Substring(0, $($PSScriptRoot.Length - 24)) + &quot;PoSH\Modules\PSExcel&quot;
+$logg.Info(&quot;PSExcel location : $PSModule&quot;)
+
+
+Import-Module $PSModule
+#$xlPath = &quot;C:\temp\NEW_WFA_sheet.xlsx&quot;
+$xlPath = Get-WfaRestParameter &quot;host&quot;
+$logg.Info(&quot; XL Path: $xlPath&quot;)
+$rows = Import-XLSX -path $xlPath -Header &quot;id&quot;,&quot;old_cluster_name&quot;,&quot;new_cluster_name&quot;, &quot;old_node_name&quot;, &quot;new_node_name&quot;,&quot;old_node_mgmt&quot;, &quot;new_node_mgmt&quot;, &quot;new_node_netmask&quot;, &quot;new_node_gateway&quot;, &quot;old_SP_ip&quot;, &quot;new_SP_ip&quot;, &quot;new_SP_netmask&quot;, &quot;new_SP_gateway&quot;, &quot;old_cluster_mgmt&quot;, &quot;new_cluster_mgmt&quot;, &quot;new_cluster_netmask&quot;, &quot;new_cluster_gateway&quot;
+
+foreach ( $row in $rows)
+	{
+		$CheckRow = $row.old_node_name
+		if(!$CheckRow)
+			{
+				continue
+			}
+		$name = $row.old_cluster_name
+		
+		$node = $row.old_node_name.trim()
+		$new_node = $row.new_node_name.trim()
+		$Node_id = $node.Gethashcode()
+		
+		$node_mgmt = $row.old_node_mgmt.trim()
+		$new_node_mgmt = $row.new_node_mgmt.trim()
+		$new_node_netmask = $row.new_node_netmask.trim()
+		
+		$logg.Info(&quot;new Node mgmt: $new_node_mgmt , $new_node_netmask &quot;)
+		
+		$node_sp_ip = $row.old_SP_ip.trim()
+		$new_node_sp_ip = $row.new_SP_ip.trim()
+		$new_node_sp_netmask = $row.new_SP_netmask.trim()
+		$new_node_sp_gateway = $row.new_SP_gateway.trim()
+		$logg.Info(&quot;new SP: $new_node_sp_ip, $new_node_sp_netmask, $new_node_sp_gateway &quot;)
+		if($name)
+			{
+				$name = $name.trim()
+				$ip = $row.old_cluster_mgmt.trim()
+				$new_name = $row.new_cluster_name.trim()
+				$new_ip = $row.new_cluster_mgmt.trim()
+				$new_cluster_netmask = $row.new_cluster_netmask.trim()
+				$new_cluster_gateway = $row.new_cluster_gateway.trim()
+				$Cluster_id = $ip.Gethashcode()
+				$logg.Info(&quot;New Cluster : $name, $new_name, $ip, $new_ip, $new_cluster_netmask, $new_cluster_gateway &quot;)
+				
+								
+				Add-Content $clusterFile ([byte[]][char[]] &quot;$Cluster_id`t$ip`t$name`t$new_name`t$new_ip`t$new_cluster_netmask`t$new_cluster_gateway`n&quot; ) -Encoding Byte
+				
+				
+				Add-Content $nodeFile ([byte[]][char[]] &quot;$Node_id`t$node`t$Cluster_id`t$new_node`n&quot;) -Encoding Byte
+				Add-Content $node_mgmtFile ([byte[]][char[]] &quot;\N`t$node_mgmt`t$Node_id`t$new_node_mgmt`t$new_node_netmask`n&quot;) -Encoding Byte
+				Add-Content $node_spFile ([byte[]][char[]] &quot;\N`t$node_sp_ip`t$Node_id`t$new_node_sp_ip`t$new_node_sp_netmask`t$new_node_sp_gateway`n&quot;) -Encoding Byte
+			}
+		else
+		{
+		Add-Content $nodeFile ([byte[]][char[]] &quot;$Node_id`t$node`t$Cluster_id`t$new_node`n&quot;) -Encoding Byte
+		Add-Content $node_mgmtFile ([byte[]][char[]] &quot;\N`t$node_mgmt`t$Node_id`t$new_node_mgmt`t$new_node_netmask`n&quot;) -Encoding Byte
+		Add-Content $node_spFile ([byte[]][char[]] &quot;\N`t$node_sp_ip`t$Node_id`t$new_node_sp_ip`t$new_node_sp_netmask`t$new_node_sp_gateway`n&quot;) -Encoding Byte
+		}
+	
+	
+	}		
+	
+
+	
+	
+
+
+</script>
+</scriptDataProviderType>

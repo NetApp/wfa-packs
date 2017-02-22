@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Data Protection">
+    <certification>NONE</certification>
+    <uuid>41ec7214-c8a8-4484-8d0f-cfacbd16f5b0</uuid>
+    <version>1.0.0</version>
+    <description>A set of workflows that configure data protection relationships. These workflows deal with different data protection technologies such as Volume SnapMirror and SnapVault.</description>
+    <icon>protect.png</icon>
+    <workflows>
+        <workflow>c1f9a6d8-e979-4aa5-ba15-6e5b4a084356</workflow>
+        <workflow>8c1a4f35-63b0-46f8-845f-1e81ec199858</workflow>
+        <workflow>b3b07a10-eddb-45b9-b39c-db34263320a9</workflow>
+        <workflow>d3f8e0a4-8c62-4de6-8be2-52ded7b8d540</workflow>
+        <workflow>a89ad6cf-c812-4236-9806-4dd332f47cd0</workflow>
+        <workflow>47c9ca1f-63bf-4f30-8eca-17f076f70348</workflow>
+        <workflow>c785103b-f76d-4682-94cb-3ffac346d226</workflow>
+        <workflow>6f66dd8c-5867-430c-8e6d-ee9a8d64a62b</workflow>
+        <workflow>62b54372-c690-4b7d-8109-112de3838f6c</workflow>
+        <workflow>cfb4d7cc-5c5a-4a32-8953-14aba3858321</workflow>
+        <workflow>e55637ca-d008-469f-91b5-63378cafcef8</workflow>
+        <workflow>95a69c66-ec41-48d0-acae-913fec25f265</workflow>
+        <workflow>f1f3a3d3-ba44-4df1-b1e6-73ee8c8154da</workflow>
+        <workflow>30613681-ad9b-43d2-9f99-3acf23ab51b9</workflow>
+        <workflow>0f48814b-6c81-44c3-a3ff-8cadbe1218e5</workflow>
+        <workflow>81a45bc6-70bb-4193-86bd-b840a8e7e6bc</workflow>
+        <workflow>98e7ed5a-9adc-4ba8-8fb6-1999b9b00912</workflow>
+        <workflow>a1036628-4866-4a63-9aeb-67949a4897fe</workflow>
+        <workflow>5750941e-f81c-4544-9a4d-f6609be6dd78</workflow>
+        <workflow>5532001d-c83c-458d-b5ec-edfb4a79c6aa</workflow>
+    </workflows>
+</category>

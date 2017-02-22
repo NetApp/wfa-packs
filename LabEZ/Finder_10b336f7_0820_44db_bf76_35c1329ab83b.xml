@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<finder name="d72a2bd1-7761-41c3-b8cc-ad79c9c29874" privateFinder="true">
+    <certification>NONE</certification>
+    <uuid>10b336f7-0820-44db-bf76-35c1329ab83b</uuid>
+    <version>1.0.0</version>
+    <attributes>
+        <attributes alias="mgmt_ip" columnName="mgmt_ip" sortingOrder="ASCENDING">
+            <filter>b331c9ac-aab4-41bb-a716-5495fa4281c1</filter>
+        </attributes>
+    </attributes>
+    <dictionary-entry>acbc98e9-6f6f-4c05-b541-6eb0c59744f4</dictionary-entry>
+    <filters>
+        <filter>b331c9ac-aab4-41bb-a716-5495fa4281c1</filter>
+    </filters>
+</finder>

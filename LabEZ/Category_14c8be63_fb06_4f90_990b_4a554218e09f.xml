@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Decommissioning">
+    <certification>NONE</certification>
+    <uuid>14c8be63-fb06-4f90-990b-4a554218e09f</uuid>
+    <version>1.0.0</version>
+    <description>A set of workflows which deal with actions involved during decommissioning. This includes workflows that destroy storage objects and their various associated objects.</description>
+    <icon>reclaim.png</icon>
+    <workflows>
+        <workflow>efbf1d08-21e6-461a-a913-f043238db5f6</workflow>
+        <workflow>5ffbde8c-c430-4851-9c83-164c102a4d68</workflow>
+    </workflows>
+</category>

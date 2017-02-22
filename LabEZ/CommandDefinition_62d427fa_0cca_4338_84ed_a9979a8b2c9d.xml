@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<commandDefinition name="Modify Service Processor for a Cluster Node" samplingIntervalInSeconds="60" stringRepresentation="Node + &quot;=&gt;&quot; + OldIPAddress + &quot;=&gt;&quot; + NewIPAddress" timeoutInSeconds="600" type="STANDARD">
+    <certification>NONE</certification>
+    <uuid>62d427fa-0cca-4338-84ed-a9979a8b2c9d</uuid>
+    <version>1.0.0</version>
+    <command-implementations>
+        <command-implementation>
+            <command>param (
+  [parameter(Mandatory=$true, HelpMessage=&quot;Cluster Name or IP&quot;)]
+  [string]$Cluster,
+
+  [parameter(Mandatory=$true, HelpMessage=&quot;Node Name&quot;)]
+  [string]$Node,
+
+  [parameter(Mandatory=$true, HelpMessage=&quot;IP Address Type&quot;)]
+  [ValidateSet(&quot;ipv4&quot;,&quot;ipv6&quot;)]
+  [string]$AddressType,
+  
+  [parameter(Mandatory=$true, HelpMessage=&quot;IP Address&quot;)]
+  [string]$OldIPAddress,
+
+  [parameter(Mandatory=$true, HelpMessage=&quot;IP Address&quot;)]
+  [string]$NewIPAddress,
+
+  [parameter(Mandatory=$true, HelpMessage=&quot;Net Mask&quot;)]
+  [string]$NetMask,
+ 
+  [parameter(Mandatory=$true, HelpMessage=&quot;Username&quot;)]
+  [string]$Gateway,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Username&quot;)]
+  [string]$UserName,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Login password&quot;)]
+  [Alias(&quot;P_Password&quot;)]
+  [string]$Password	
+  
+)
+
+
+If(!($UserName) -and !($Password))
+{
+	throw &quot;Username and Password not provided in command arguments&quot;
+}
+
+
+
+#Get username and password
+    $SecurePassword= Get-WfaInputPassword -EncryptedPassword $Password
+    $creds = New-Object System.Management.Automation.PSCredential($UserName,$SecurePassword)
+	
+Connect-NcController -Name $Cluster -Credential $creds
+
+$result=Set-NcServiceProcessorNetwork -Node $Node -AddressType $AddressType -Address $NewIPAddress -GatewayAddress $Gateway -Netmask $NetMask -Enable
+
+
+if($result)
+{
+Get-WfaLogger -Info -Message $(&quot; Successfully modified service processor network for Node: $result.Node IPAddress: $result.IpAddress, NetMask $result.Netmask Gateway $result.GatewayIpAddress .&quot;)
+
+$Query = $(&quot;INSERT INTO completed_clusters.sp_modified (old_ip, new_ip) VALUES ('$OldIPAddress','$NewIPAddress');&quot;)
+Get-WfaLogger -Info -Message &quot;QUERY: $Query&quot;
+Invoke-MySqlQuery -Query $Query	
+Get-WfaLogger -Info -Message &quot;====== Node Service-Processor successful modified =====&quot;
+}	
+
+
+
+
+
+
+
+</command>
+            <commandLanguage>POWER_SHELL</commandLanguage>
+        </command-implementation>
+    </command-implementations>
+    <parameter-mappings>
+        <parameter-mapping objectName="AddressType" parameterName="AddressType"/>
+        <parameter-mapping objectName="Cluster" parameterName="Cluster"/>
+        <parameter-mapping objectName="Gateway" parameterName="Gateway"/>
+        <parameter-mapping objectName="NetMask" parameterName="NetMask"/>
+        <parameter-mapping objectName="NewIPAddress" parameterName="NewIPAddress"/>
+        <parameter-mapping objectName="Node" parameterName="Node"/>
+        <parameter-mapping objectName="OldIPAddress" parameterName="OldIPAddress"/>
+        <parameter-mapping objectName="Password" parameterName="Password"/>
+        <parameter-mapping objectName="UserName" parameterName="UserName"/>
+    </parameter-mappings>
+    <congruenceTest></congruenceTest>
+    <parameter-definitions>
+        <parameter-definition description="IP Address Type" enumValues="ipv4,ipv6" isMandatory="true" name="AddressType" type="Enum">
+            <uuid>71c18dd4-4da8-4946-935e-5be2c8dadd27</uuid>
+        </parameter-definition>
+        <parameter-definition description="Cluster Name or IP" isMandatory="true" name="Cluster" type="String">
+            <uuid>acec83bf-77c4-441c-bef5-d1d98b1bce4f</uuid>
+        </parameter-definition>
+        <parameter-definition description="Username" isMandatory="true" name="Gateway" type="String">
+            <uuid>b1ad286f-b892-4881-b2f7-176ec90612b5</uuid>
+        </parameter-definition>
+        <parameter-definition description="Net Mask" isMandatory="true" name="NetMask" type="String">
+            <uuid>d517af58-f3a7-416f-8bbd-e9f5b3801323</uuid>
+        </parameter-definition>
+        <parameter-definition description="IP Address" isMandatory="true" name="NewIPAddress" type="String">
+            <uuid>27611677-7716-4993-a379-4828ed573e50</uuid>
+        </parameter-definition>
+        <parameter-definition description="Node Name" isMandatory="true" name="Node" type="String">
+            <uuid>03dfc7d3-0ace-4ccf-a564-0727e2be53cd</uuid>
+        </parameter-definition>
+        <parameter-definition description="IP Address" isMandatory="true" name="OldIPAddress" type="String">
+            <uuid>b5232b75-df53-4a11-9542-a9db61fc7ca8</uuid>
+        </parameter-definition>
+        <parameter-definition description="Login password. Recommendation is to leave it blank and provide details in WFA credentials" isMandatory="false" name="Password" type="Password">
+            <uuid>ffaa1b3e-8d25-4336-9a72-e8cacf920e6b</uuid>
+        </parameter-definition>
+        <parameter-definition description="Username" isMandatory="false" name="UserName" type="String">
+            <uuid>888bb3ed-97bd-4c61-aafa-d47d443992b1</uuid>
+        </parameter-definition>
+    </parameter-definitions>
+    <reservationScript></reservationScript>
+    <schemeNames></schemeNames>
+</commandDefinition>

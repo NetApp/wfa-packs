@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<filter filter_type="SQL" name="Get all Valid Cluster Mgmt ips" privateFilter="false">
+    <certification>NONE</certification>
+    <uuid>ab3a78fd-948a-4e2b-919c-8d81d2d72608</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry>87540590-3e7c-4828-b8a7-77763c560d7a</dictionary-entry>
+    <parameters/>
+    <query>SELECT
+    clusters.ip_address as 'ip_address',
+    clusters.new_ip_address as 'New Cluster Mgmt IP',
+    clusters.new_netmask as 'Netmask',
+    clusters.name as 'Old Cluster Name',
+    clusters.new_name as 'New Cluster Name'
+FROM
+    all_clusters.clusters
+WHERE
+    clusters.ip_address NOT IN (
+        SELECT
+            completed_clusters.cluster_int_modified.old_ip
+        FROM
+            completed_clusters.cluster_int_modified
+    )</query>
+    <returned-attributes>
+        <returned-attribute>Netmask</returned-attribute>
+        <returned-attribute>New Cluster Mgmt IP</returned-attribute>
+        <returned-attribute>New Cluster Name</returned-attribute>
+        <returned-attribute>Old Cluster Name</returned-attribute>
+        <returned-attribute>ip_address</returned-attribute>
+    </returned-attributes>
+</filter>

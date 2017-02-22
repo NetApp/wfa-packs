@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<commandDefinition name="Modify Mgmt Interface for a Cluster" samplingIntervalInSeconds="60" stringRepresentation="OldIPAddress + &quot;=&gt;&quot; + NewIPAddress" timeoutInSeconds="600" type="STANDARD">
+    <certification>NONE</certification>
+    <uuid>33930edc-a60c-448e-bebd-61c3d94dad61</uuid>
+    <version>1.0.0</version>
+    <command-implementations>
+        <command-implementation>
+            <command>param (
+   
+  [parameter(Mandatory=$true, HelpMessage=&quot;IP Address&quot;)]
+  [string]$OldIPAddress,
+
+  [parameter(Mandatory=$true, HelpMessage=&quot;IP Address&quot;)]
+  [string]$NewIPAddress,
+
+  [parameter(Mandatory=$true, HelpMessage=&quot;Netmask&quot;)]
+  [string]$Netmask,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Username&quot;)]
+  [string]$UserName,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Login password&quot;)]
+  [Alias(&quot;P_Password&quot;)]
+  [string]$Password	
+  
+)
+
+
+If(!($UserName) -and !($Password))
+{
+	throw &quot;Username and Password not provided in command arguments&quot;
+}
+
+
+#Get username and password
+    $SecurePassword= Get-WfaInputPassword -EncryptedPassword $Password
+    $creds = New-Object System.Management.Automation.PSCredential($UserName,$SecurePassword)	
+Connect-NcController -Name $OldIPAddress -Credential $creds
+
+$interface = Get-NcNetInterface -Role cluster_mgmt
+$intName = $interface.InterfaceName
+$intNetmask = $interface.Netmask
+$intVserver = $interface.Vserver
+			
+Get-WfaLogger -Info -Message &quot;====== Modifying Cluster mgmt IP from $OldIPAddress to $NewIPAddress&quot;
+					try
+						{
+							Set-NcNetInterface -Name $intName -Address $NewIPAddress -Vserver $intVserver -Netmask $Netmask -ErrorAction SilentlyContinue
+							$Query = $(&quot;INSERT INTO completed_clusters.cluster_int_modified (old_ip, new_ip) VALUES ('$OldIPAddress','$NewIPAddress');&quot;)
+							Get-WfaLogger -Info -Message &quot;QUERY: $Query&quot;
+							Invoke-MySqlQuery -Query $Query	
+
+							Get-WfaLogger -Info -Message &quot;====== Cluster mgmt $intName Ip successful modified from $OldIPAddress to $NewIPAddress =====&quot;
+						}
+					catch
+						{
+							## Connection to the Cluster gets lost here
+							$ErrorMsg = $_.exception			
+							if ($ErrorMsg -match &quot;API invoke failed&quot;)
+								{
+									
+									$Query = $(&quot;INSERT INTO completed_clusters.cluster_int_modified (old_ip, new_ip) VALUES ('$OldIPAddress','$NewIPAddress');&quot;)
+									Get-WfaLogger -Info -Message &quot;QUERY: $Query&quot;
+									Invoke-MySqlQuery -Query $Query	
+
+									Get-WfaLogger -Info -Message &quot;====== Cluster mgmt $intName Ip successful modified from $OldIPAddress to $NewIPAddress =====&quot;
+								}
+							else	{
+									throw $ErrorMsg
+								}
+			
+							
+						}</command>
+            <commandLanguage>POWER_SHELL</commandLanguage>
+        </command-implementation>
+    </command-implementations>
+    <parameter-mappings>
+        <parameter-mapping objectName="Netmask" parameterName="Netmask"/>
+        <parameter-mapping objectName="NewIPAddress" parameterName="NewIPAddress"/>
+        <parameter-mapping objectName="OldIPAddress" parameterName="OldIPAddress"/>
+        <parameter-mapping objectName="Password" parameterName="Password"/>
+        <parameter-mapping objectName="UserName" parameterName="UserName"/>
+    </parameter-mappings>
+    <congruenceTest></congruenceTest>
+    <parameter-definitions>
+        <parameter-definition description="Netmask" isMandatory="true" name="Netmask" type="String">
+            <uuid>b03f1469-0ead-4264-ae48-b428231817b1</uuid>
+        </parameter-definition>
+        <parameter-definition description="IP Address" isMandatory="true" name="NewIPAddress" type="String">
+            <uuid>dbe7cbcf-b9e7-441c-8163-af31b307daaf</uuid>
+        </parameter-definition>
+        <parameter-definition description="IP Address" isMandatory="true" name="OldIPAddress" type="String">
+            <uuid>1b6b3079-24ea-4d46-8750-72bec6d5b941</uuid>
+        </parameter-definition>
+        <parameter-definition description="Login password. Recommendation is to leave it blank and provide details in WFA credentials" isMandatory="false" name="Password" type="Password">
+            <uuid>257a4e51-a753-4442-998e-1a1fc3aa1539</uuid>
+        </parameter-definition>
+        <parameter-definition description="Username" isMandatory="false" name="UserName" type="String">
+            <uuid>8a09f6fe-0f3d-4829-a1a8-506f4dfcfdbc</uuid>
+        </parameter-definition>
+    </parameter-definitions>
+    <reservationScript></reservationScript>
+    <schemeNames></schemeNames>
+</commandDefinition>

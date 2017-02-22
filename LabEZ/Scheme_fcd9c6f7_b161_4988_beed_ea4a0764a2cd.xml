@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<scheme name="all_clusters">
+    <certification>NONE</certification>
+    <uuid>fcd9c6f7-b161-4988-beed-ea4a0764a2cd</uuid>
+    <version>1.0.0</version>
+    <description></description>
+    <prettyName>All clusters present in XLXS</prettyName>
+    <schemeType>READ_ONLY</schemeType>
+    <toBeReset>false</toBeReset>
+</scheme>

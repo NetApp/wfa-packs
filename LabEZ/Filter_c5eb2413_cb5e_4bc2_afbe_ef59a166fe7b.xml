@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<filter filter_type="SQL" name="Get All Valid Network Rotues for a Cluster" privateFilter="false">
+    <certification>NONE</certification>
+    <uuid>c5eb2413-cb5e-4bc2-afbe-ef59a166fe7b</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry>87540590-3e7c-4828-b8a7-77763c560d7a</dictionary-entry>
+    <parameters/>
+    <query>SELECT
+    clusters.name AS 'Cluster Name',
+    clusters.ip_address as 'ip_address' ,
+    clusters.new_gateway AS 'Gateway'
+FROM
+    all_clusters.clusters
+WHERE
+    clusters.ip_address NOT IN (
+        SELECT
+            completed_clusters.cluster_route.ip_address
+        from
+            completed_clusters.cluster_route
+    )</query>
+    <returned-attributes>
+        <returned-attribute>Cluster Name</returned-attribute>
+        <returned-attribute>Gateway</returned-attribute>
+        <returned-attribute>ip_address</returned-attribute>
+    </returned-attributes>
+</filter>

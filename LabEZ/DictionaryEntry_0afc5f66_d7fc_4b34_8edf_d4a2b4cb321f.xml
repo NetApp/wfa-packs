@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dictionaryEntry natural-key-case-sensitive="false" type="node_sp_ip">
+    <certification>NONE</certification>
+    <uuid>0afc5f66-d7fc-4b34-8edf-d4a2b4cb321f</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry-properties>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="sp_ip" naturalKey="true" is-nullable="false">
+            <description></description>
+            <uuid>5b038509-fd2d-4ee0-be9d-9f25c98343c6</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectReference" is-cacheable="true" name="node" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>c350669f-eb16-4970-9ca0-482b605c390a</uuid>
+            <reference-type>375b00fd-3965-431b-b07a-b3d6f364e001</reference-type>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_sp_ip" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>c76ed633-a3d7-4d68-8745-d88d8acf1825</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_netmask" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>cedfdf48-5282-44ec-bd34-970be6c24732</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_gateway" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>b17c273d-6965-470a-a4b4-658068d3fc86</uuid>
+        </dictionary-entry-property>
+    </dictionary-entry-properties>
+    <scheme>fcd9c6f7-b161-4988-beed-ea4a0764a2cd</scheme>
+</dictionaryEntry>

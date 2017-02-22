@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<commandDefinition name="Modify Cluster Hostname" samplingIntervalInSeconds="60" stringRepresentation="Cluster + '=&gt;' + NewClusterName" timeoutInSeconds="600" type="STANDARD">
+    <certification>NONE</certification>
+    <uuid>7100f714-cca8-4fd3-bfbd-10fed3b393e3</uuid>
+    <version>1.0.0</version>
+    <command-implementations>
+        <command-implementation>
+            <command>param (
+  [parameter(Mandatory=$true, HelpMessage=&quot;Cluster Name or IP&quot;)]
+  [string]$Cluster,
+
+  [parameter(Mandatory=$true, HelpMessage=&quot;New HostName for the Cluster&quot;)]
+  [string]$NewClusterName,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Username&quot;)]
+  [string]$UserName,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Login password. Recommendation is to leave it blank and provide details in WFA credentials&quot;)]
+  [Alias(&quot;P_Password&quot;)]
+  [string]$Password	
+  
+)
+
+
+
+If(!($UserName) -and !($Password))
+{
+	throw &quot;Credentials not added in WFA nor Username and Password not provided in command arguments&quot;
+}
+
+
+#Get username and password
+    $SecurePassword= Get-WfaInputPassword -EncryptedPassword $Password
+    $creds = New-Object System.Management.Automation.PSCredential($UserName,$SecurePassword)
+
+Connect-NcController -Name $Cluster -Credential $creds
+$oldHostname = (Get-NcCluster).ClusterName
+
+$mysqlData = Invoke-MySqlQuery -Query &quot;SELECT ip_address FROM completed_clusters.clusters_renamed&quot;
+if ( $Cluster -in $mysqlData.ip_address)
+		{
+			Get-WfaLogger -Info -Message &quot;Cluster $Cluster is already renamed. Skipping it..&quot;
+				return
+		}
+
+Get-WfaLogger -Info -Message &quot;Old Cluster Hostname: $oldHostname&quot;
+
+Get-WfaLogger -Info -Message &quot;========== Modifying Cluster Hostname ===========&quot;
+
+$newHostname=(Set-NcCluster -Name $NewClusterName).ClusterName
+if($newHostname)
+
+{
+Get-WfaLogger -Info -Message &quot;Veryfying New Cluster Hostname: $newHostname&quot;
+
+$Query = $(&quot;INSERT INTO completed_clusters.clusters_renamed (ip_address, name) VALUES ('$Cluster','$oldHostname');&quot;)
+Get-WfaLogger -Info -Message &quot;QUERY: $Query&quot;
+Invoke-MySqlQuery -Query $Query	
+
+
+Get-WfaLogger -Info -Message &quot;========== Cluster Hostname Modified sucessfully ===========&quot;
+
+}</command>
+            <commandLanguage>POWER_SHELL</commandLanguage>
+        </command-implementation>
+    </command-implementations>
+    <parameter-mappings>
+        <parameter-mapping objectName="Cluster" parameterName="Cluster"/>
+        <parameter-mapping objectName="NewClusterName" parameterName="NewClusterName"/>
+        <parameter-mapping objectName="Password" parameterName="Password"/>
+        <parameter-mapping objectName="UserName" parameterName="UserName"/>
+    </parameter-mappings>
+    <parameter-definitions>
+        <parameter-definition description="Cluster Name or IP" isMandatory="true" name="Cluster" type="String">
+            <uuid>163a3b04-6b8e-40c7-83aa-a908e5a7d5b9</uuid>
+        </parameter-definition>
+        <parameter-definition description="New HostName for the Cluster" isMandatory="true" name="NewClusterName" type="String">
+            <uuid>cdf82523-03ca-4598-9536-f240587f46b5</uuid>
+        </parameter-definition>
+        <parameter-definition description="Login password. Recommendation is to leave it blank and provide details in WFA credentials" isMandatory="false" name="Password" type="Password">
+            <uuid>027f258d-2565-4a8c-82bd-d285e50b81fd</uuid>
+        </parameter-definition>
+        <parameter-definition description="Username" isMandatory="false" name="UserName" type="String">
+            <uuid>cea921a6-ee3e-4105-bf92-cb5c9d82714a</uuid>
+        </parameter-definition>
+    </parameter-definitions>
+    <schemeNames></schemeNames>
+</commandDefinition>

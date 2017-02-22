@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<filter filter_type="SQL" name="Get All Valid SP ips" privateFilter="false">
+    <certification>NONE</certification>
+    <uuid>360744f9-a6d9-4e08-9180-e29cce5d5719</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry>0afc5f66-d7fc-4b34-8edf-d4a2b4cb321f</dictionary-entry>
+    <parameters/>
+    <query>SELECT
+    node_sp_ip.sp_ip AS 'sp_ip',
+    nodes.name AS 'Node Name',
+    clusters.ip_address AS 'Cluster IP Address',
+    node_sp_ip.new_sp_ip AS 'New SP IP Address',
+    node_sp_ip.new_netmask AS 'Netmask',
+    node_sp_ip.new_gateway AS 'Gateway'
+FROM
+    all_clusters.clusters,
+    all_clusters.nodes,
+    all_clusters.node_sp_ip
+WHERE
+    node_sp_ip.node_id = nodes.id
+    AND nodes.cluster_id= clusters.id
+    AND node_sp_ip.sp_ip NOT IN (
+        SELECT
+            sp_modified.old_ip
+        FROM
+            completed_clusters.sp_modified
+    ) </query>
+    <returned-attributes>
+        <returned-attribute>Cluster IP Address</returned-attribute>
+        <returned-attribute>Gateway</returned-attribute>
+        <returned-attribute>Netmask</returned-attribute>
+        <returned-attribute>New SP IP Address</returned-attribute>
+        <returned-attribute>Node Name</returned-attribute>
+        <returned-attribute>sp_ip</returned-attribute>
+    </returned-attributes>
+</filter>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tabularWorkflow considerReservedElements="true" description="Workflow to Modify Cluster Mgmt Interface for all clusters using finders" enableElementExistenceValidation="true" name="Workflow to Modify Cluster Mgmt Interface for all cluster using finders" readyForProduction="true">
+    <certification>NONE</certification>
+    <uuid>89a06b9e-2e31-4dbe-8893-b06b25f0547a</uuid>
+    <version>1.0.0</version>
+    <workflow-commands>
+        <workflow-command breakpointBeforeCommand="false" commandAlias="Modify Mgmt Interface for a Cluster" uuid="ee55a948-245c-4ea2-b543-89cbf247b9ff">
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+            <command-definition>33930edc-a60c-448e-bebd-61c3d94dad61</command-definition>
+        </workflow-command>
+    </workflow-commands>
+    <find-charts/>
+    <minSoftwareVersions>OnCommand WFA 4.0</minSoftwareVersions>
+    <return-parameters/>
+    <rows>
+        <row>
+            <command-details>
+                <command-detail failureStrategy="CONTINUE_TO_NEXT_ROW">
+                    <command-mapped-objects/>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <other-parameters>
+                        <command-parameter-value value="clustersMember1.new_netmask">
+                            <parameter-definition>b03f1469-0ead-4264-ae48-b428231817b1</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="clustersMember1.new_ip_address">
+                            <parameter-definition>dbe7cbcf-b9e7-441c-8163-af31b307daaf</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="clustersMember1.ip_address">
+                            <parameter-definition>1b6b3079-24ea-4d46-8750-72bec6d5b941</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Password">
+                            <parameter-definition>257a4e51-a753-4442-998e-1a1fc3aa1539</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Username">
+                            <parameter-definition>8a09f6fe-0f3d-4829-a1a8-506f4dfcfdbc</parameter-definition>
+                        </command-parameter-value>
+                    </other-parameters>
+                    <workflow-command>ee55a948-245c-4ea2-b543-89cbf247b9ff</workflow-command>
+                </command-detail>
+            </command-details>
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+            <row-loop-info groupSizeVariable="GroupSize1" iteratorName="Index1" memberVariable="clustersMember1">
+                <loop-variables/>
+                <resource-selector errorMessage="" type="CONTINUE">
+                    <dictionary-entry>87540590-3e7c-4828-b8a7-77763c560d7a</dictionary-entry>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <filter-parameter-values/>
+                    <finder>2a0114a9-cb98-4c0f-98f2-98b56775827a</finder>
+                    <natural-key-values/>
+                </resource-selector>
+            </row-loop-info>
+        </row>
+    </rows>
+    <user-input-groups>
+        <user-input-group expandByDefault="false" name="">
+            <user-inputs>
+                <user-input defaultValue="Workflow execution will Modify Cluster Mgmt IP and further Cluster Connectivity will be lost on the Old IP Address" displayName="WARNING! " locked="false" mandatory="true" name="$Warning" uuid="a2b064d2-ed33-40e2-a572-402206c0efba">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enumUserInputType" enumValues="Workflow execution will Modify Cluster Mgmt IP and further Cluster Connectivity will be lost on the Old IP Address" viewAsRadio="false"/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+        <user-input-group expandByDefault="true" name="Credentials">
+            <user-inputs>
+                <user-input defaultValue="admin" locked="false" mandatory="true" name="$Username" uuid="25e2ab51-2b98-4023-a222-15d81239f772">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="stringUserInputType" regularExpression=""/>
+                </user-input>
+                <user-input defaultValue="netapp1!" locked="false" mandatory="true" name="$Password" uuid="92ff6557-7da6-4fdf-9135-fa4f6aae24a9">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="passwordUserInputType"/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+    </user-input-groups>
+    <workflow-constants>
+        <workflow-constant name="Warning" value="$Warning">
+            <description></description>
+        </workflow-constant>
+    </workflow-constants>
+</tabularWorkflow>

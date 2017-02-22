@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Miscellaneous">
+    <certification>NONE</certification>
+    <uuid>97d147dd-90c0-4c87-9071-5e950617d744</uuid>
+    <version>1.0.0</version>
+    <description>A set of miscellaneous workflows for various storage management actions.</description>
+    <workflows>
+        <workflow>70f86b98-8dba-475e-b29e-26fccbfdad53</workflow>
+        <workflow>fcceb347-25c4-489a-9ce6-4a0198c95ede</workflow>
+    </workflows>
+</category>

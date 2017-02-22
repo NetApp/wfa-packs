@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<filter filter_type="SQL" name="Get All Valid Cluster Nodes" privateFilter="false">
+    <certification>NONE</certification>
+    <uuid>b255eba5-29e2-44c9-b382-bf5a3a719be2</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry>375b00fd-3965-431b-b07a-b3d6f364e001</dictionary-entry>
+    <parameters/>
+    <query>SELECT
+    nodes.name AS 'name',
+    nodes.new_name AS 'New Node Name',
+    clusters.ip_address as 'Cluster IP Address'
+FROM
+    all_clusters.nodes,
+    all_clusters.clusters
+WHERE
+    nodes.cluster_id = clusters.id
+    AND nodes.name NOT IN (
+        SELECT
+            completed_clusters.nodes_renamed.old_name
+        from
+            completed_clusters.nodes_renamed
+    ) </query>
+    <returned-attributes>
+        <returned-attribute>Cluster IP Address</returned-attribute>
+        <returned-attribute>New Node Name</returned-attribute>
+        <returned-attribute>name</returned-attribute>
+    </returned-attributes>
+</filter>

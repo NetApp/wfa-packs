@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<commandDefinition name="Add Network Route for a Cluster" samplingIntervalInSeconds="60" stringRepresentation="Cluster + &quot;=&gt;&quot; + Gateway + &quot;=&gt;&quot; + Destination" timeoutInSeconds="600" type="STANDARD">
+    <certification>NONE</certification>
+    <uuid>bccf9efc-99c5-49b4-8277-bf2e8efe6d3d</uuid>
+    <version>1.0.0</version>
+    <command-implementations>
+        <command-implementation>
+            <command>param (
+  [parameter(Mandatory=$true, HelpMessage=&quot;Cluster Name or IP&quot;)]
+  [string]$Cluster,
+  
+  [parameter(Mandatory=$true, HelpMessage=&quot;IP Address&quot;)]
+  [string]$Destination,
+
+  [parameter(Mandatory=$true, HelpMessage=&quot;IP Address&quot;)]
+  [string]$Gateway,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Username&quot;)]
+  [string]$UserName,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Login password&quot;)]
+  [Alias(&quot;P_Password&quot;)]
+  [string]$Password	
+  
+)
+
+
+If(!($UserName) -and !($Password))
+{
+	throw &quot;Username and Password not provided in command arguments&quot;
+}
+
+
+#Get username and password
+    $SecurePassword= Get-WfaInputPassword -EncryptedPassword $Password
+    $creds = New-Object System.Management.Automation.PSCredential($UserName,$SecurePassword)
+	
+Connect-NcController -Name $Cluster -Credential $creds
+$OntapVersion = Get-OntapVersionFromString -VersionString (Get-NcSystemVersion).Value
+$vCount = ([regex]::Matches($OntapVersion, &quot;\.&quot; )).count
+if($vCount -eq 1)
+{
+	$OntapVersion = $OntapVersion + '.0'
+}
+if($vCount -eq 0)
+{
+	$OntapVersion = $OntapVersion + '.0.0'
+}
+Get-WfaLogger -Info -Message &quot;ONTAP version: $OntapVersion&quot;
+
+$val=Compare-OntapVersions -FirstVersion $OntapVersion -SecondVersion 8.3.0
+
+Get-WfaLogger -Info -Message &quot;====== Adding Network Route for Cluster $Cluster ======&quot;
+			if($val -ge 0)
+				{ 
+					$result = New-NcNetRoute -Destination $Destination -Gateway $Gateway -VserverContext (Get-NcCluster).ClusterName
+					if ( $result )
+						{
+							$Query = $(&quot;INSERT INTO completed_clusters.cluster_route (ip_address, gateway) VALUES ('$Cluster','$Gateway');&quot;)
+							Get-WfaLogger -Info -Message &quot;QUERY: $Query&quot;
+							Invoke-MySqlQuery -Query $Query	
+
+							Get-WfaLogger -Info -Message $(&quot;====== Cluster Route added with  Gateway $result.gateway  and Destination $result.Destination =====&quot;)
+						}
+				}
+			else
+				{
+
+				  	####  for versions less that 8.3.0
+				  	$lif = Get-NcNetInterface -Name cluster_mgmt -Vserver (Get-NcCluster).ClusterName
+				  	$routingGroup = $lif | select RoutingGroupName
+				  	$result = New-NcNetRoutingGroupRoute -RoutingGroup $routingGroup.RoutingGroupName -Vserver (Get-NcCluster).ClusterName -destination $Destination -Gateway $Gateway
+					if($result)
+						{
+							$Query = $(&quot;INSERT INTO completed_clusters.cluster_route (ip_address, gateway) VALUES ('$Cluster','$Gateway');&quot;)
+							Get-WfaLogger -Info -Message &quot;QUERY: $Query&quot;
+							Invoke-MySqlQuery -Query $Query	
+
+							Get-WfaLogger -Info -Message $(&quot;====== Cluster Route added with  Gateway $result.gateway  and Destination $result.Destination =====&quot;)
+						}
+
+				}
+
+
+
+
+</command>
+            <commandLanguage>POWER_SHELL</commandLanguage>
+        </command-implementation>
+    </command-implementations>
+    <parameter-mappings>
+        <parameter-mapping objectName="Cluster" parameterName="Cluster"/>
+        <parameter-mapping objectName="Destination" parameterName="Destination"/>
+        <parameter-mapping objectName="Gateway" parameterName="Gateway"/>
+        <parameter-mapping objectName="Password" parameterName="Password"/>
+        <parameter-mapping objectName="UserName" parameterName="UserName"/>
+    </parameter-mappings>
+    <congruenceTest></congruenceTest>
+    <parameter-definitions>
+        <parameter-definition description="Cluster Name or IP" isMandatory="true" name="Cluster" type="String">
+            <uuid>40feb17e-88ce-4561-8701-825ee29c886b</uuid>
+        </parameter-definition>
+        <parameter-definition description="IP Address" isMandatory="true" name="Destination" type="String">
+            <uuid>7ec9983d-7198-4c48-9187-a53d7140ac07</uuid>
+        </parameter-definition>
+        <parameter-definition description="IP Address" isMandatory="true" name="Gateway" type="String">
+            <uuid>2a60730b-5970-43b6-916d-d43d6c27a00f</uuid>
+        </parameter-definition>
+        <parameter-definition description="Login password. Recommendation is to leave it blank and provide details in WFA credentials" isMandatory="false" name="Password" type="Password">
+            <uuid>66174450-1c38-4aac-b81b-21e2dc12c655</uuid>
+        </parameter-definition>
+        <parameter-definition description="Username" isMandatory="false" name="UserName" type="String">
+            <uuid>1fdbdaa0-e4d3-4bf0-8280-67ea6d10a928</uuid>
+        </parameter-definition>
+    </parameter-definitions>
+    <reservationScript></reservationScript>
+    <schemeNames></schemeNames>
+</commandDefinition>

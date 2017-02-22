@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Getting Started">
+    <certification>NONE</certification>
+    <uuid>bbf6d7a5-ca5b-4608-b56e-4814b93c2378</uuid>
+    <version>1.0.0</version>
+    <description>A set of basic workflows to try out Workflow Automation.</description>
+    <icon>samples.png</icon>
+    <workflows>
+        <workflow>944cac51-676e-4c25-9834-ef83fd020077</workflow>
+        <workflow>cf73c778-3445-47f5-9640-dc25c340b530</workflow>
+    </workflows>
+</category>

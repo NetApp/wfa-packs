@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<commandDefinition name="Modify Cluster Node Name" samplingIntervalInSeconds="60" stringRepresentation="OldNodeName + &quot;=&gt;&quot; + NewNodeName" timeoutInSeconds="600" type="STANDARD">
+    <certification>NONE</certification>
+    <uuid>c7be2e8b-91f6-44e9-bbc9-86498606be2a</uuid>
+    <version>1.0.0</version>
+    <command-implementations>
+        <command-implementation>
+            <command>param (
+  [parameter(Mandatory=$true, HelpMessage=&quot;Cluster&quot;)]
+  [string]$Cluster,
+
+  [parameter(Mandatory=$true, HelpMessage=&quot;Old Node Name&quot;)]
+  [String]$OldNodeName,
+  
+  [parameter(Mandatory=$true, HelpMessage=&quot;New Node Name&quot;)]
+  [String]$NewNodeName,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Username&quot;)]
+  [string]$UserName,
+
+  [parameter(Mandatory=$false, HelpMessage=&quot;Login password&quot;)]
+  [Alias(&quot;P_Password&quot;)]
+  [string]$Password	
+  
+)
+
+	#Get username and password
+    $SecurePassword= Get-WfaInputPassword -EncryptedPassword $Password
+    $creds = New-Object System.Management.Automation.PSCredential($UserName,$SecurePassword)
+	
+    
+Connect-NcController -Name $Cluster -Credential $creds
+
+	Get-WfaLogger -Info -Message &quot;===== Trying to rename Node: $oldNodeName to $newNodeName ======&quot;
+	$Nname=( Rename-NcNode -Name $oldNodeName -NewName $newNodeName -Confirm:$false ).Node
+	
+if ($Nname)
+{
+	$Query = $(&quot;INSERT INTO completed_clusters.nodes_renamed (old_name, new_name) VALUES ('$oldNodeName','$newNodeName');&quot;)
+	Get-WfaLogger -Info -Message &quot;QUERY: $Query&quot;
+	Invoke-MySqlQuery -Query $Query	
+
+	Get-WfaLogger -Info -Message &quot;====== Rename successful from $oldNodeName to $Nname =====&quot;
+
+	Get-WfaLogger -Info -Message &quot;==== Modifying the Interface names for role cluster on the node : $newNodeName =====&quot;
+	$clusterLifs = Get-NcNetInterface -Role cluster
+	foreach ($lif in $clusterLifs)
+		{
+			if ( $lif.InterfaceName -imatch $OldNodeName)
+				{
+					$intName = $lif.InterfaceName
+					Get-WfaLogger -Info -Message $(&quot;Found cluster lif : $intName&quot;)
+					$suffix = $lif.InterfaceName.Substring($OldNodeName.Length, $lif.InterfaceName.Length - $OldNodeName.Length )
+					$newLifName = $NewNodeName + $suffix
+					$cmd = &quot;net interface rename -vserver Cluster -lif $intName -newname $newLifName&quot;
+					Get-WfaLogger -Info -Message $(&quot;Cluster Lif rename command : $cmd&quot;)
+					Invoke-NaSsh -Name $Cluster -Credential $creds -Command $cmd
+				}
+		
+		
+		}
+	
+	Get-WfaLogger -Info -Message &quot;==== Modifying the Interface names for role node_mgmt : $newNodeName =====&quot;
+	$NodeLifs = Get-NcNetInterface -Role node_mgmt
+	foreach ($lif in $NodeLifs)
+		{
+			if ( $lif.InterfaceName -imatch $OldNodeName)
+				{
+					$intName = $lif.InterfaceName
+					$intVserver = $lif.Vserver
+					Get-WfaLogger -Info -Message $(&quot;Found cluster lif : $intName&quot;)
+					$suffix = $lif.InterfaceName.Substring($OldNodeName.Length, $lif.InterfaceName.Length - $OldNodeName.Length )
+					$newLifName = $NewNodeName + $suffix
+					$cmd = &quot;net interface rename -vserver $intVserver -lif $intName -newname $newLifName&quot;
+					Get-WfaLogger -Info -Message $(&quot;Cluster Lif rename command : $cmd&quot;)
+					Invoke-NaSsh -Name $Cluster -Credential $creds -Command $cmd
+				}
+		
+		
+		}
+	
+	
+}	
+
+
+
+
+</command>
+            <commandLanguage>POWER_SHELL</commandLanguage>
+        </command-implementation>
+    </command-implementations>
+    <parameter-mappings>
+        <parameter-mapping objectName="Cluster" parameterName="Cluster"/>
+        <parameter-mapping objectName="NewNodeName" parameterName="NewNodeName"/>
+        <parameter-mapping objectName="OldNodeName" parameterName="OldNodeName"/>
+        <parameter-mapping objectName="Password" parameterName="Password"/>
+        <parameter-mapping objectName="UserName" parameterName="UserName"/>
+    </parameter-mappings>
+    <congruenceTest></congruenceTest>
+    <parameter-definitions>
+        <parameter-definition description="Cluster" isMandatory="true" name="Cluster" type="String">
+            <uuid>abce7d20-9616-4e12-b225-b976b5493027</uuid>
+        </parameter-definition>
+        <parameter-definition description="New Node Name" isMandatory="true" name="NewNodeName" type="String">
+            <uuid>37c3e84e-3586-4d61-a015-4b443d6d4b3b</uuid>
+        </parameter-definition>
+        <parameter-definition description="Old Node Name" isMandatory="true" name="OldNodeName" type="String">
+            <uuid>8e309381-50f4-40d0-aa53-7eaafa11e6e4</uuid>
+        </parameter-definition>
+        <parameter-definition description="Login password" isMandatory="false" name="Password" type="Password">
+            <uuid>27b6273b-1040-4c49-9246-f3b84f5823be</uuid>
+        </parameter-definition>
+        <parameter-definition description="Username" isMandatory="false" name="UserName" type="String">
+            <uuid>94c057af-893e-4311-b39e-4b38efa22d79</uuid>
+        </parameter-definition>
+    </parameter-definitions>
+    <reservationScript></reservationScript>
+    <schemeNames></schemeNames>
+</commandDefinition>

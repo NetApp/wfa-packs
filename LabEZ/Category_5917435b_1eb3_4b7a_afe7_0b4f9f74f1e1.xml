@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="LabEZ Phase II">
+    <certification>NONE</certification>
+    <uuid>5917435b-1eb3-4b7a-afe7-0b4f9f74f1e1</uuid>
+    <version>1.0.0</version>
+    <description>Workflows for NBS LabEZ Project</description>
+    <workflows>
+        <workflow>ed5f1373-18a1-463e-a6a0-4e3a54d57cc1</workflow>
+        <workflow>23ea35ec-b746-42c3-80eb-f13cce9318b8</workflow>
+    </workflows>
+</category>

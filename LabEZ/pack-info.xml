@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pack>
+    <author>Abhishek Sinha</author>
+    <certification>COMMUNITY</certification>
+    <description>LabEZ pack contain work-flows for modifying your entire lab clusters. The workflows have commands who perform the following task.&#xD;
+1. Modifying the Service Processor&#xD;
+2. Modifying Management Interface for a Cluster Node&#xD;
+3. Add Network Route&#xD;
+4. Modify Cluster Node Name&#xD;
+5. Modify Cluster Name&#xD;
+6. Modifying the Cluster Management Interface&#xD;
+&#xD;
+Lab inventory is often maintained in EXCL sheets. LabEZ provided the automation for reading the inventory details, and modifying the clusters as per the inventory data.&#xD;
+It keeps track of what operation completed and allows you to reattempt the failed operation.&#xD;
+&#xD;
+Prerequisite&#xD;
+1. Powershell Module : PSExcel&#xD;
+2. Lab inventory in Excel format. See attached sample file.&#xD;
+</description>
+    <downloadUrl></downloadUrl>
+    <entities>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of workflows that deal with content repository solution. It includes workflows to create a content repository Storage Virtual Machine that can host an infinite volume without classes of storage or with multiple classes of storage.
+
+There are workflows to expand an infinite volume without classes of storage or in case of infinite volumes with multiple classes of storage, there are workflows to add storage of either performance or capacity class of storage. There are also workflows to set up a data protection relationship for the infinite volume.</description>
+            <name>Content Repository</name>
+            <type>Category</type>
+            <uuid>62c48eca-b4de-4f66-990b-fd7bd8a4dbdb</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>cluster_route</name>
+            <type>Dictionary Entry</type>
+            <uuid>6f202b89-8beb-4892-a2f2-0977a6ee023b</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>node_interface_modified</name>
+            <type>Dictionary Entry</type>
+            <uuid>2077701b-bb02-4080-ba0c-85dae295f7ec</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Add Network Route for a Cluster</name>
+            <type>Command</type>
+            <uuid>bccf9efc-99c5-49b4-8277-bf2e8efe6d3d</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description></description>
+            <name>all_clusters</name>
+            <type>Scheme</type>
+            <uuid>fcd9c6f7-b161-4988-beed-ea4a0764a2cd</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>Workflow to Modify Cluster Mgmt Interface by user selection
+</description>
+            <name>Workflow to modify Cluster Mgmt Interface by User Selection</name>
+            <type>Workflow</type>
+            <uuid>23ea35ec-b746-42c3-80eb-f13cce9318b8</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>node_sp_ip</name>
+            <type>Dictionary Entry</type>
+            <uuid>0afc5f66-d7fc-4b34-8edf-d4a2b4cb321f</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Get All Valid Cluster Nodes</name>
+            <type>Filter</type>
+            <uuid>b255eba5-29e2-44c9-b382-bf5a3a719be2</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>node_mgmt_ip</name>
+            <type>Dictionary Entry</type>
+            <uuid>acbc98e9-6f6f-4c05-b541-6eb0c59744f4</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>Workflows for NBS LabEZ Project</description>
+            <name>LabEZ Phase I</name>
+            <type>Category</type>
+            <uuid>b9f09b2c-3c1f-4785-94f9-d706270e048e</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of workflows that deal with storage provisioning in a virtual environment. This includes workflows that provision storage and subsequently create VMware datastores.</description>
+            <name>Virtualization</name>
+            <type>Category</type>
+            <uuid>898955ae-fb95-4e77-a8b9-731206696c8a</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>Workflow for Modifying all Cluster using resource selection automaticall using finders.</description>
+            <name>Workflow for modifying ALL Clusters using finders</name>
+            <type>Workflow</type>
+            <uuid>b8b57fe4-2855-497d-a968-12035e65a202</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description></description>
+            <name>completed_clusters</name>
+            <type>Scheme</type>
+            <uuid>c6d76a96-8852-4f85-80d7-be9e5631ebec</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of workflows that provision storage for applications. This includes workflows that provision multiple storage objects as per the storage and data layout requirements of an application such as Oracle or Exchange.</description>
+            <name>Application Provisioning</name>
+            <type>Category</type>
+            <uuid>1cf13ddf-9470-415e-816f-faffb15dfb4b</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>Workflow to Modify Clusters by User Selection</description>
+            <name>Workflow to Modify Cluster by User Selection</name>
+            <type>Workflow</type>
+            <uuid>ed5f1373-18a1-463e-a6a0-4e3a54d57cc1</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>Workflow to Modify Cluster Mgmt Interface for all clusters using finders</description>
+            <name>Workflow to Modify Cluster Mgmt Interface for all cluster using finders</name>
+            <type>Workflow</type>
+            <uuid>89a06b9e-2e31-4dbe-8893-b06b25f0547a</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Modify Cluster Hostname</name>
+            <type>Command</type>
+            <uuid>7100f714-cca8-4fd3-bfbd-10fed3b393e3</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Modify Service Processor for a Cluster Node</name>
+            <type>Command</type>
+            <uuid>62d427fa-0cca-4338-84ed-a9979a8b2c9d</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of miscellaneous workflows for various storage management actions.</description>
+            <name>Miscellaneous</name>
+            <type>Category</type>
+            <uuid>97d147dd-90c0-4c87-9071-5e950617d744</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>cluster_int_modified</name>
+            <type>Dictionary Entry</type>
+            <uuid>f5b309d4-ec44-4601-b425-c41d33d5cbed</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Get All Valid SP ips</name>
+            <type>Filter</type>
+            <uuid>360744f9-a6d9-4e08-9180-e29cce5d5719</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>sp_modified</name>
+            <type>Dictionary Entry</type>
+            <uuid>604ea4eb-6a07-48f0-be28-9e06f15c04e5</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of workflows which deal with actions involved during decommissioning. This includes workflows that destroy storage objects and their various associated objects.</description>
+            <name>Decommissioning</name>
+            <type>Category</type>
+            <uuid>14c8be63-fb06-4f90-990b-4a554218e09f</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Modify Mgmt Interface for a Cluster Node</name>
+            <type>Command</type>
+            <uuid>22cf02a4-31c8-4493-ae58-a4b3cc8d43aa</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of workflows that help setup the storage environment.</description>
+            <name>Setup</name>
+            <type>Category</type>
+            <uuid>3fd4e387-3003-47bc-9631-0c7c6279767f</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Get All Valid Cluster Names</name>
+            <type>Filter</type>
+            <uuid>6127e2d7-86a7-41da-a988-f54409327b7d</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>nodes</name>
+            <type>Dictionary Entry</type>
+            <uuid>375b00fd-3965-431b-b07a-b3d6f364e001</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Get All Valid Network Rotues for a Cluster</name>
+            <type>Filter</type>
+            <uuid>c5eb2413-cb5e-4bc2-afbe-ef59a166fe7b</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of workflows that help manage storage. This includes workflows for resizing storage, migrating volumes from their current locations to other storage systems and aggregates, and moving volumes non-disruptively in Cluster-Mode.</description>
+            <name>Migration</name>
+            <type>Category</type>
+            <uuid>9abc6dec-4f9f-41cb-bb3b-29fd4fc9cd9f</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Get all Valid Cluster Mgmt ips</name>
+            <type>Filter</type>
+            <uuid>ab3a78fd-948a-4e2b-919c-8d81d2d72608</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>nodes_renamed</name>
+            <type>Dictionary Entry</type>
+            <uuid>00c13977-8848-4311-8109-51f7d9dd20c8</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>clusters_renamed</name>
+            <type>Dictionary Entry</type>
+            <uuid>55f0434a-52b0-4a27-8d1b-bffbf2bc92d6</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of basic workflows to try out Workflow Automation.</description>
+            <name>Getting Started</name>
+            <type>Category</type>
+            <uuid>bbf6d7a5-ca5b-4608-b56e-4814b93c2378</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>Workflows for NBS LabEZ Project</description>
+            <name>LabEZ Phase II</name>
+            <type>Category</type>
+            <uuid>5917435b-1eb3-4b7a-afe7-0b4f9f74f1e1</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Modify Mgmt Interface for a Cluster</name>
+            <type>Command</type>
+            <uuid>33930edc-a60c-448e-bebd-61c3d94dad61</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Get All Valid Node Mgmt ips</name>
+            <type>Filter</type>
+            <uuid>b331c9ac-aab4-41bb-a716-5495fa4281c1</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of workflows that configure data protection relationships. These workflows deal with different data protection technologies such as Volume SnapMirror and SnapVault.</description>
+            <name>Data Protection</name>
+            <type>Category</type>
+            <uuid>41ec7214-c8a8-4484-8d0f-cfacbd16f5b0</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description>A set of workflows for storage provisioning in 7-Mode and Clustered Data ONTAP storage systems. This includes workflows which provision storage objects like volumes, LUNs, qtrees, configure NFS exports, create CIFS shares, create igroups and map provisioned LUNs to those igroups.</description>
+            <name>Storage Provisioning</name>
+            <type>Category</type>
+            <uuid>41323e8f-edf5-41d5-8a12-04819e73b378</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <description></description>
+            <name>All Clusters_1.0</name>
+            <type>Script Data Source Type</type>
+            <uuid>987e99cc-8fad-4b14-9c20-81b94f7459b7</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>Modify Cluster Node Name</name>
+            <type>Command</type>
+            <uuid>c7be2e8b-91f6-44e9-bbc9-86498606be2a</uuid>
+            <version>1.0.0</version>
+        </entity>
+        <entity>
+            <certification>NONE</certification>
+            <name>clusters</name>
+            <type>Dictionary Entry</type>
+            <uuid>87540590-3e7c-4828-b8a7-77763c560d7a</uuid>
+            <version>1.0.0</version>
+        </entity>
+    </entities>
+    <minWfaVersion>4.0.0.0.0</minWfaVersion>
+    <name>LabEZ</name>
+    <uuid>ea72293c-6a78-44dd-b3b1-185262f1af3a</uuid>
+    <version>1.0.0</version>
+</pack>

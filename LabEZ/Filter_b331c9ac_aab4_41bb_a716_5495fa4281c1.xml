@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<filter filter_type="SQL" name="Get All Valid Node Mgmt ips" privateFilter="false">
+    <certification>NONE</certification>
+    <uuid>b331c9ac-aab4-41bb-a716-5495fa4281c1</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry>acbc98e9-6f6f-4c05-b541-6eb0c59744f4</dictionary-entry>
+    <parameters/>
+    <query>SELECT
+    nodes.name AS 'Node Name',
+    clusters.ip_address AS 'Cluster IP Address' ,
+    node_mgmt_ip.mgmt_ip AS 'mgmt_ip',
+    node_mgmt_ip.new_mgmt_ip AS 'New Node Mgmt IP',
+    node_mgmt_ip.new_netmask AS 'New Netmask'
+FROM
+    all_clusters.node_mgmt_ip,
+    all_clusters.nodes,
+    all_clusters.clusters
+WHERE
+    node_mgmt_ip.node_id = nodes.id
+    AND nodes.cluster_id = clusters.id
+    AND node_mgmt_ip.mgmt_ip NOT IN (
+        SELECT
+            completed_clusters.node_interface_modified.old_ip
+        FROM
+            completed_clusters.node_interface_modified
+    )</query>
+    <returned-attributes>
+        <returned-attribute>Cluster IP Address</returned-attribute>
+        <returned-attribute>New Netmask</returned-attribute>
+        <returned-attribute>New Node Mgmt IP</returned-attribute>
+        <returned-attribute>Node Name</returned-attribute>
+        <returned-attribute>mgmt_ip</returned-attribute>
+    </returned-attributes>
+</filter>

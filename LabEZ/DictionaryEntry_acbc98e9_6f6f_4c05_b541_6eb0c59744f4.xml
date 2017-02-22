@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dictionaryEntry natural-key-case-sensitive="false" type="node_mgmt_ip">
+    <certification>NONE</certification>
+    <uuid>acbc98e9-6f6f-4c05-b541-6eb0c59744f4</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry-properties>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="mgmt_ip" naturalKey="true" is-nullable="false">
+            <description></description>
+            <uuid>d4b527c9-84b8-4f7c-a38d-f6fb0f4cd420</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectReference" is-cacheable="true" name="node" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>e6695bd8-1fc9-48d5-a381-e9a7190505ce</uuid>
+            <reference-type>375b00fd-3965-431b-b07a-b3d6f364e001</reference-type>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_mgmt_ip" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>13f8f8d1-c840-4556-bcf3-b1ab804aba08</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_netmask" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>a1433381-faea-432b-9f05-21dcc0faa825</uuid>
+        </dictionary-entry-property>
+    </dictionary-entry-properties>
+    <scheme>fcd9c6f7-b161-4988-beed-ea4a0764a2cd</scheme>
+</dictionaryEntry>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dictionaryEntry natural-key-case-sensitive="false" type="clusters">
+    <certification>NONE</certification>
+    <uuid>87540590-3e7c-4828-b8a7-77763c560d7a</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry-properties>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="ip_address" naturalKey="true" is-nullable="false">
+            <description></description>
+            <uuid>9fb3d0d6-6568-47ed-a9c5-00fefc108522</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="name" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>aeca0ee1-6cd0-400a-887c-fdf7a3fe06f5</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_name" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>aadc1de2-4535-424e-ab17-dd09ffff1b8b</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_ip_address" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>a3bdb10a-1d7c-4ea4-80c5-d713d812fc5c</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_netmask" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>21dcfe4d-9269-4e0e-9821-d3d597c19856</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_gateway" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>6ff8ed70-26d2-4d05-b53f-69dd1b2b78ee</uuid>
+        </dictionary-entry-property>
+    </dictionary-entry-properties>
+    <scheme>fcd9c6f7-b161-4988-beed-ea4a0764a2cd</scheme>
+</dictionaryEntry>

@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+dar-version-dhansak_store: 3.0.0.5.0_dhansak_store
+dar-version-eclair_criteria_builder: 3.1.0.1.1_eclair_criteria_builder
+dar-version-eclair: 3.1.0.20.6_eclair
+dar-version-falafel_rst: 4.0.0.2.1_falafel_rst
+dar-version-calamari: 2.2.0.15.7_calamari
+dar-version-dhansak: 3.0.0.41.1_dhansak
+Class-Path: com.netapp.wfa.finders.model.finder.Finder:com.netapp.wfa.
+ finders.model.filter.Filter:com.netapp.wfa.command.model.CommandDefin
+ ition:com.netapp.wfa.finders.model.policies.Policy:com.netapp.wfa.cac
+ he.model.SqlDataProviderType:com.netapp.wfa.engine.category.Category:
+ com.netapp.wfa.engine.context.functions.FunctionDefinition:com.netapp
+ .wfa.finders.model.dictionary.DictionaryEntry:com.netapp.wfa.cache.mo
+ del.ScriptDataProviderType:com.netapp.wfa.command.model.RemoteSystemT
+ ype:com.netapp.wfa.finders.model.scheme.Scheme:com.netapp.wfa.cache.m
+ odel.CacheQuery:com.netapp.wfa.engine.workflow.table.TabularWorkflow:
+dar-version-falafel_pack_management: 4.0.0.2.1_falafel_pack_management
+dar-version: 4.0.0.0.0
+dar-version-falafel_cof: 4.0.0.3.0_falafel_cof
+dar-version-eclair_linux: 3.1.0.2.1_eclair_linux
+dar-version-dhansak_wfentity: 3.0.0.4.1_dhansak_wfentity
+dar-version-dhansak_epsilon: 3.0.0.0.1_dhansak_epsilon
+dar-version-calamari_versioning: 2.2.0.1.1_calamari_versioning
+dar-version-eclair_mlc: 3.1.0.7.1_eclair_mlc
+dar-version-falafel: 4.0.0.18.1_falafel
+dar-version-falafel_decoupling: 4.0.0.2.1_falafel_decoupling
+

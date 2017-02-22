@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Virtualization">
+    <certification>NONE</certification>
+    <uuid>898955ae-fb95-4e77-a8b9-731206696c8a</uuid>
+    <version>1.0.0</version>
+    <description>A set of workflows that deal with storage provisioning in a virtual environment. This includes workflows that provision storage and subsequently create VMware datastores.</description>
+    <workflows>
+        <workflow>b4f0510a-5619-4e77-8162-f9b1ecdef760</workflow>
+        <workflow>f7432d1d-e76e-4568-85ba-9ef557ffd5f3</workflow>
+    </workflows>
+</category>

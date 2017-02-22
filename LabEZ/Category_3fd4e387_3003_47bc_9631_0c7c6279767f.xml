@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Setup">
+    <certification>NONE</certification>
+    <uuid>3fd4e387-3003-47bc-9631-0c7c6279767f</uuid>
+    <version>1.0.0</version>
+    <description>A set of workflows that help setup the storage environment.</description>
+    <icon>setup.png</icon>
+    <workflows>
+        <workflow>927201af-296b-4536-b327-45635382b0f1</workflow>
+        <workflow>6d93f001-a4e3-427f-b185-66a8cfed3649</workflow>
+        <workflow>627ea0cb-3225-4771-ae10-0634d2088e2a</workflow>
+        <workflow>70cf475f-206f-4dd1-b181-b75398ed8c84</workflow>
+        <workflow>9ca1c203-a10c-4087-b475-c06a1f724199</workflow>
+        <workflow>701612fd-0e52-4e3e-82c5-b02948bb6028</workflow>
+        <workflow>40091e63-1a52-4e69-8e9c-a0d12b72e2fd</workflow>
+    </workflows>
+</category>

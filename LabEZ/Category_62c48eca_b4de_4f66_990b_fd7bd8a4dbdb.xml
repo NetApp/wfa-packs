@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Content Repository">
+    <certification>NONE</certification>
+    <uuid>62c48eca-b4de-4f66-990b-fd7bd8a4dbdb</uuid>
+    <version>1.0.0</version>
+    <description>A set of workflows that deal with content repository solution. It includes workflows to create a content repository Storage Virtual Machine that can host an infinite volume without classes of storage or with multiple classes of storage.
+
+There are workflows to expand an infinite volume without classes of storage or in case of infinite volumes with multiple classes of storage, there are workflows to add storage of either performance or capacity class of storage. There are also workflows to set up a data protection relationship for the infinite volume.</description>
+    <workflows>
+        <workflow>e1359347-8ef1-405e-a150-d571b29e00b4</workflow>
+        <workflow>3611b71d-dd11-4867-847a-f8599ccc60b9</workflow>
+        <workflow>29957dd1-48e9-4587-bf21-0593ba37c907</workflow>
+        <workflow>0c128121-70aa-4df7-a411-10eb6fc52f50</workflow>
+        <workflow>fde8caa6-2975-48a7-b90c-cbbdc753b705</workflow>
+    </workflows>
+</category>

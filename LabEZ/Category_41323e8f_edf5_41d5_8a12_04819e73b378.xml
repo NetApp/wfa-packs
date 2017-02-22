@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Storage Provisioning">
+    <certification>NONE</certification>
+    <uuid>41323e8f-edf5-41d5-8a12-04819e73b378</uuid>
+    <version>1.0.0</version>
+    <description>A set of workflows for storage provisioning in 7-Mode and Clustered Data ONTAP storage systems. This includes workflows which provision storage objects like volumes, LUNs, qtrees, configure NFS exports, create CIFS shares, create igroups and map provisioned LUNs to those igroups.</description>
+    <icon>provision.png</icon>
+    <workflows>
+        <workflow>546b08ce-6868-4a46-b1ea-31a973c5a312</workflow>
+        <workflow>e66f7780-e24f-419d-a7c5-3255d6558c41</workflow>
+        <workflow>c47814db-35c9-423b-977e-1f35e365f005</workflow>
+        <workflow>76b936ba-d52e-4304-b562-01676d35ad43</workflow>
+        <workflow>7bc1bf7f-a059-42b1-89e0-fbee9af64e1e</workflow>
+        <workflow>782d5a27-b3ea-466f-aaef-1faf4e9f01a5</workflow>
+        <workflow>6c2ecdd8-ad6d-4df7-adfe-9c11b59ea58e</workflow>
+        <workflow>67f25ff5-7d40-4cf2-b381-ba7b5e43ed5f</workflow>
+        <workflow>944cac51-676e-4c25-9834-ef83fd020077</workflow>
+        <workflow>c7d33e01-ac58-4db6-a364-695a1cecc145</workflow>
+        <workflow>8528d4d1-7a59-4847-bb71-df7e1deae4e5</workflow>
+        <workflow>929c538d-ee39-4a78-bf57-b0904c1a6875</workflow>
+        <workflow>4ae7c721-e917-4888-b437-c3bd491411f0</workflow>
+        <workflow>cff92121-1c70-4119-b13d-ca54d52126b3</workflow>
+        <workflow>d4a86e88-9387-484e-9e97-37d992bb0100</workflow>
+        <workflow>f76a0e9b-821b-4444-88cc-08a698868946</workflow>
+        <workflow>158dbc09-2f76-4960-899b-fe766d16cf09</workflow>
+    </workflows>
+</category>

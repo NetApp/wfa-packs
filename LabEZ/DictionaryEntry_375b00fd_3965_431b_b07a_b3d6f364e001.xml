@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dictionaryEntry natural-key-case-sensitive="false" type="nodes">
+    <certification>NONE</certification>
+    <uuid>375b00fd-3965-431b-b07a-b3d6f364e001</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry-properties>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="name" naturalKey="true" is-nullable="false">
+            <description></description>
+            <uuid>b861caa8-b4ea-44af-9ff7-97d8a566d951</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectReference" is-cacheable="true" name="cluster" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>5139d907-1f56-4cc5-a996-37b43fc24e76</uuid>
+            <reference-type>87540590-3e7c-4828-b8a7-77763c560d7a</reference-type>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_name" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>c797c26d-084f-4bb7-936b-7396be48409e</uuid>
+        </dictionary-entry-property>
+    </dictionary-entry-properties>
+    <scheme>fcd9c6f7-b161-4988-beed-ea4a0764a2cd</scheme>
+</dictionaryEntry>

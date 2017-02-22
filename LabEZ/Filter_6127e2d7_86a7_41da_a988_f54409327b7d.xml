@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<filter filter_type="SQL" name="Get All Valid Cluster Names" privateFilter="false">
+    <certification>NONE</certification>
+    <uuid>6127e2d7-86a7-41da-a988-f54409327b7d</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry>87540590-3e7c-4828-b8a7-77763c560d7a</dictionary-entry>
+    <parameters/>
+    <query>SELECT
+    clusters.ip_address as 'ip_address',
+    clusters.name AS 'Old Cluster Name',
+    clusters.new_name as 'New Cluster Name'
+FROM
+    all_clusters.clusters
+WHERE
+    clusters.ip_address NOT IN(
+        SELECT
+            completed_clusters.clusters_renamed.ip_address
+        FROM
+            completed_clusters.clusters_renamed
+    ) </query>
+    <returned-attributes>
+        <returned-attribute>New Cluster Name</returned-attribute>
+        <returned-attribute>Old Cluster Name</returned-attribute>
+        <returned-attribute>ip_address</returned-attribute>
+    </returned-attributes>
+</filter>

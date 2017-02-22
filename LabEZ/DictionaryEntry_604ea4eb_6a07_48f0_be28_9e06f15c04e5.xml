@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dictionaryEntry natural-key-case-sensitive="false" type="sp_modified">
+    <certification>NONE</certification>
+    <uuid>604ea4eb-6a07-48f0-be28-9e06f15c04e5</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry-properties>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="old_ip" naturalKey="true" is-nullable="false">
+            <description></description>
+            <uuid>c4368933-b54a-4a20-8809-0c9ef2054438</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_ip" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>f937a2ae-29bb-46a4-a15a-8f90e81b2e00</uuid>
+        </dictionary-entry-property>
+    </dictionary-entry-properties>
+    <scheme>c6d76a96-8852-4f85-80d7-be9e5631ebec</scheme>
+</dictionaryEntry>

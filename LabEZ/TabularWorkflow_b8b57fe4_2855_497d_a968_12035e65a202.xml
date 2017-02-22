@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tabularWorkflow considerReservedElements="true" description="Workflow for Modifying all Cluster using resource selection automaticall using finders." enableElementExistenceValidation="true" name="Workflow for modifying ALL Clusters using finders" readyForProduction="true">
+    <certification>NONE</certification>
+    <uuid>b8b57fe4-2855-497d-a968-12035e65a202</uuid>
+    <version>1.0.0</version>
+    <workflow-commands>
+        <workflow-command breakpointBeforeCommand="false" commandAlias="Modify Service Processor for a Cluster Node1" uuid="46dfc085-d8d2-4fe7-9ec0-f5cb81793be0">
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+            <command-definition>62d427fa-0cca-4338-84ed-a9979a8b2c9d</command-definition>
+        </workflow-command>
+        <workflow-command breakpointBeforeCommand="false" commandAlias="Modify Mgmt Interface for a Cluster Node1" uuid="c4d69bd4-6db9-4989-89cf-2f7aeeba939b">
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+            <command-definition>22cf02a4-31c8-4493-ae58-a4b3cc8d43aa</command-definition>
+        </workflow-command>
+        <workflow-command breakpointBeforeCommand="false" commandAlias="Add Network Route for a Cluster1" uuid="35c76c1a-6e61-43fa-84d8-9da6080248fe">
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+            <command-definition>bccf9efc-99c5-49b4-8277-bf2e8efe6d3d</command-definition>
+        </workflow-command>
+        <workflow-command breakpointBeforeCommand="false" commandAlias="Modify Cluster Node Name" uuid="c33bdc4f-4bd5-4b0d-9cb9-adf481798244">
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+            <command-definition>c7be2e8b-91f6-44e9-bbc9-86498606be2a</command-definition>
+        </workflow-command>
+        <workflow-command breakpointBeforeCommand="false" commandAlias="Modify Cluster Hostname" uuid="fc06520c-ecb6-4a1e-9c07-f16539c62518">
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+            <command-definition>7100f714-cca8-4fd3-bfbd-10fed3b393e3</command-definition>
+        </workflow-command>
+    </workflow-commands>
+    <find-charts/>
+    <minSoftwareVersions>OnCommand WFA4.0</minSoftwareVersions>
+    <return-parameters/>
+    <rows>
+        <row>
+            <command-details>
+                <command-detail failureStrategy="CONTINUE_TO_NEXT_ROW">
+                    <command-mapped-objects/>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <other-parameters>
+                        <command-parameter-value value="$AddressType">
+                            <parameter-definition>71c18dd4-4da8-4946-935e-5be2c8dadd27</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_sp_ipMember1.node.cluster.ip_address">
+                            <parameter-definition>acec83bf-77c4-441c-bef5-d1d98b1bce4f</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_sp_ipMember1.new_gateway">
+                            <parameter-definition>b1ad286f-b892-4881-b2f7-176ec90612b5</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_sp_ipMember1.new_netmask">
+                            <parameter-definition>d517af58-f3a7-416f-8bbd-e9f5b3801323</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_sp_ipMember1.new_sp_ip">
+                            <parameter-definition>27611677-7716-4993-a379-4828ed573e50</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_sp_ipMember1.node.name">
+                            <parameter-definition>03dfc7d3-0ace-4ccf-a564-0727e2be53cd</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_sp_ipMember1.sp_ip">
+                            <parameter-definition>b5232b75-df53-4a11-9542-a9db61fc7ca8</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Password">
+                            <parameter-definition>ffaa1b3e-8d25-4336-9a72-e8cacf920e6b</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Username">
+                            <parameter-definition>888bb3ed-97bd-4c61-aafa-d47d443992b1</parameter-definition>
+                        </command-parameter-value>
+                    </other-parameters>
+                    <workflow-command>46dfc085-d8d2-4fe7-9ec0-f5cb81793be0</workflow-command>
+                </command-detail>
+            </command-details>
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="expressionCondition" expression="$ModifySP == &quot;true&quot;"/>
+            <row-loop-info groupSizeVariable="GroupSize4" iteratorName="Index2" memberVariable="node_sp_ipMember1">
+                <loop-variables/>
+                <resource-selector errorMessage="" type="CONTINUE">
+                    <dictionary-entry>0afc5f66-d7fc-4b34-8edf-d4a2b4cb321f</dictionary-entry>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <filter-parameter-values/>
+                    <finder>52211154-2341-4bf6-9d1a-f1ed4918e258</finder>
+                    <natural-key-values/>
+                </resource-selector>
+            </row-loop-info>
+        </row>
+        <row>
+            <command-details>
+                <command-detail failureStrategy="CONTINUE_TO_NEXT_ROW">
+                    <command-mapped-objects/>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <other-parameters>
+                        <command-parameter-value value="node_mgmt_ipMember1.node.cluster.ip_address">
+                            <parameter-definition>738c05e9-3d4b-4cb3-9823-aa47a587f8fa</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_mgmt_ipMember1.new_netmask">
+                            <parameter-definition>8f9abfa9-b1f8-4b70-be81-d3bb3ffa60f5</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_mgmt_ipMember1.new_mgmt_ip">
+                            <parameter-definition>5a571c30-7d02-4652-a2ed-7b93a7c6115a</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_mgmt_ipMember1.node.name">
+                            <parameter-definition>89bd0a31-d14d-4230-b679-7b3db97b683e</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="node_mgmt_ipMember1.mgmt_ip">
+                            <parameter-definition>ff37ffd9-c38f-4727-96bb-93e04aa0fb8c</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Password">
+                            <parameter-definition>c91f4a55-c010-419e-82e5-33bd2b5c62d9</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Username">
+                            <parameter-definition>0e7471c4-62b0-4103-990e-d69233a002ff</parameter-definition>
+                        </command-parameter-value>
+                    </other-parameters>
+                    <workflow-command>c4d69bd4-6db9-4989-89cf-2f7aeeba939b</workflow-command>
+                </command-detail>
+            </command-details>
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="expressionCondition" expression="$ModifyMgmt == &quot;triue&quot;"/>
+            <row-loop-info groupSizeVariable="GroupSize5" iteratorName="Index4" memberVariable="node_mgmt_ipMember1">
+                <loop-variables/>
+                <resource-selector errorMessage="" type="CONTINUE">
+                    <dictionary-entry>acbc98e9-6f6f-4c05-b541-6eb0c59744f4</dictionary-entry>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <filter-parameter-values/>
+                    <finder>10b336f7-0820-44db-bf76-35c1329ab83b</finder>
+                    <natural-key-values/>
+                </resource-selector>
+            </row-loop-info>
+        </row>
+        <row>
+            <command-details>
+                <command-detail failureStrategy="CONTINUE_TO_NEXT_ROW">
+                    <command-mapped-objects/>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <other-parameters>
+                        <command-parameter-value value="clustersMember1.ip_address">
+                            <parameter-definition>40feb17e-88ce-4561-8701-825ee29c886b</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Destination">
+                            <parameter-definition>7ec9983d-7198-4c48-9187-a53d7140ac07</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="clustersMember1.new_gateway">
+                            <parameter-definition>2a60730b-5970-43b6-916d-d43d6c27a00f</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Password">
+                            <parameter-definition>66174450-1c38-4aac-b81b-21e2dc12c655</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Username">
+                            <parameter-definition>1fdbdaa0-e4d3-4bf0-8280-67ea6d10a928</parameter-definition>
+                        </command-parameter-value>
+                    </other-parameters>
+                    <workflow-command>35c76c1a-6e61-43fa-84d8-9da6080248fe</workflow-command>
+                </command-detail>
+            </command-details>
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="expressionCondition" expression="$ModifyRoute == &quot;true&quot;"/>
+            <row-loop-info groupSizeVariable="GroupSize6" iteratorName="Index5" memberVariable="clustersMember1">
+                <loop-variables/>
+                <resource-selector errorMessage="" type="CONTINUE">
+                    <dictionary-entry>87540590-3e7c-4828-b8a7-77763c560d7a</dictionary-entry>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <filter-parameter-values/>
+                    <finder>678cb86b-1078-4727-bf96-09d5a04cb209</finder>
+                    <natural-key-values/>
+                </resource-selector>
+            </row-loop-info>
+        </row>
+        <row>
+            <command-details>
+                <command-detail failureStrategy="CONTINUE_TO_NEXT_ROW">
+                    <command-mapped-objects/>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <other-parameters>
+                        <command-parameter-value value="nodesMember1.cluster.ip_address">
+                            <parameter-definition>abce7d20-9616-4e12-b225-b976b5493027</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="nodesMember1.new_name">
+                            <parameter-definition>37c3e84e-3586-4d61-a015-4b443d6d4b3b</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="nodesMember1.name">
+                            <parameter-definition>8e309381-50f4-40d0-aa53-7eaafa11e6e4</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Password">
+                            <parameter-definition>27b6273b-1040-4c49-9246-f3b84f5823be</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Username">
+                            <parameter-definition>94c057af-893e-4311-b39e-4b38efa22d79</parameter-definition>
+                        </command-parameter-value>
+                    </other-parameters>
+                    <workflow-command>c33bdc4f-4bd5-4b0d-9cb9-adf481798244</workflow-command>
+                </command-detail>
+            </command-details>
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="expressionCondition" expression="$RenameNodes == &quot;true&quot;"/>
+            <row-loop-info groupSizeVariable="GroupSize7" iteratorName="Index6" memberVariable="nodesMember1">
+                <loop-variables/>
+                <resource-selector errorMessage="" type="CONTINUE">
+                    <dictionary-entry>375b00fd-3965-431b-b07a-b3d6f364e001</dictionary-entry>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <filter-parameter-values/>
+                    <finder>0e9900c9-da99-47da-9cab-e70fde4ec8b4</finder>
+                    <natural-key-values/>
+                </resource-selector>
+            </row-loop-info>
+        </row>
+        <row>
+            <command-details>
+                <command-detail failureStrategy="CONTINUE_TO_NEXT_ROW">
+                    <command-mapped-objects/>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <other-parameters>
+                        <command-parameter-value value="clustersMember2.ip_address">
+                            <parameter-definition>163a3b04-6b8e-40c7-83aa-a908e5a7d5b9</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="clustersMember2.new_name">
+                            <parameter-definition>cdf82523-03ca-4598-9536-f240587f46b5</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Password">
+                            <parameter-definition>027f258d-2565-4a8c-82bd-d285e50b81fd</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Username">
+                            <parameter-definition>cea921a6-ee3e-4105-bf92-cb5c9d82714a</parameter-definition>
+                        </command-parameter-value>
+                    </other-parameters>
+                    <workflow-command>fc06520c-ecb6-4a1e-9c07-f16539c62518</workflow-command>
+                </command-detail>
+            </command-details>
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="expressionCondition" expression="$RenameCluster == &quot;true&quot;"/>
+            <row-loop-info groupSizeVariable="GroupSize8" iteratorName="Index7" memberVariable="clustersMember2">
+                <loop-variables/>
+                <resource-selector errorMessage="" type="CONTINUE">
+                    <dictionary-entry>87540590-3e7c-4828-b8a7-77763c560d7a</dictionary-entry>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <filter-parameter-values/>
+                    <finder>f5ee4240-e42a-4cca-9759-588fed048377</finder>
+                    <natural-key-values/>
+                </resource-selector>
+            </row-loop-info>
+        </row>
+    </rows>
+    <user-input-groups>
+        <user-input-group expandByDefault="true" name="Modify Service Processor for Cluster Nodes">
+            <user-inputs>
+                <user-input defaultValue="true" displayName="Modify Service Processor" locked="false" mandatory="false" name="$ModifySP" uuid="025aee00-fe44-4eff-bf0f-7041d68885e1">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="booleanUserInputType"/>
+                </user-input>
+                <user-input conditionalUserInputValues="true" defaultValue="ipv4" locked="true" mandatory="true" name="$AddressType" uuid="6b607d36-ca70-4f58-b1f5-2a403eb1a751">
+                    <conditional-user-input>025aee00-fe44-4eff-bf0f-7041d68885e1</conditional-user-input>
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enumUserInputType" enumValues="ipv4, ipv6" viewAsRadio="false"/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+        <user-input-group expandByDefault="true" name="Modify Node Mgmt Interface for Cluster Nodes">
+            <user-inputs>
+                <user-input defaultValue="true" displayName="Modify Node Mgmt Interface" locked="false" mandatory="false" name="$ModifyMgmt" uuid="47d361aa-1872-4de3-8016-4b85a394cdfd">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="booleanUserInputType"/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+        <user-input-group expandByDefault="true" name="Add Cluster Network Route">
+            <user-inputs>
+                <user-input defaultValue="true" displayName="Add a Network Route for a Cluster" locked="false" mandatory="false" name="$ModifyRoute" uuid="c0b40d15-f459-4ce5-8594-c600a611ba35">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="booleanUserInputType"/>
+                </user-input>
+                <user-input conditionalUserInputValues="true" defaultValue="0.0.0.0/0" locked="false" mandatory="true" name="$Destination" uuid="c71093a0-1c6d-4ecf-8595-1c3f564dfba4">
+                    <conditional-user-input>c0b40d15-f459-4ce5-8594-c600a611ba35</conditional-user-input>
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="stringUserInputType" regularExpression=""/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+        <user-input-group expandByDefault="true" name="Rename Cluster Nodes">
+            <user-inputs>
+                <user-input defaultValue="true" displayName="Rename Nodes" locked="false" mandatory="false" name="$RenameNodes" uuid="6f5688cf-7e93-4279-be62-cd205625291e">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="booleanUserInputType"/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+        <user-input-group expandByDefault="true" name="Rename Cluster">
+            <user-inputs>
+                <user-input defaultValue="true" displayName="Rename Clusters" locked="false" mandatory="false" name="$RenameCluster" uuid="849af57c-7202-478b-9a25-4ac568dc4178">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="booleanUserInputType"/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+        <user-input-group expandByDefault="true" name="Credentials">
+            <user-inputs>
+                <user-input defaultValue="admin" locked="false" mandatory="true" name="$Username" uuid="23061f4c-771f-4ede-9971-93ac508d1e68">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="stringUserInputType" regularExpression=""/>
+                </user-input>
+                <user-input defaultValue="netapp1!" locked="false" mandatory="true" name="$Password" uuid="9b18c005-ec17-42fa-8e9b-8c508234424c">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="passwordUserInputType"/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+    </user-input-groups>
+    <workflow-constants/>
+</tabularWorkflow>

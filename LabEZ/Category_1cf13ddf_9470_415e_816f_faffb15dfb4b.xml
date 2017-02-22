@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Application Provisioning">
+    <certification>NONE</certification>
+    <uuid>1cf13ddf-9470-415e-816f-faffb15dfb4b</uuid>
+    <version>1.0.0</version>
+    <description>A set of workflows that provision storage for applications. This includes workflows that provision multiple storage objects as per the storage and data layout requirements of an application such as Oracle or Exchange.</description>
+    <icon>provision.png</icon>
+    <workflows>
+        <workflow>716b89ba-0910-4c91-830e-bf3a03a3927f</workflow>
+    </workflows>
+</category>

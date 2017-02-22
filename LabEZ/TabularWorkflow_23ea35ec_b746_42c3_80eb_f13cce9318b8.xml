@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tabularWorkflow considerReservedElements="true" description="Workflow to Modify Cluster Mgmt Interface by user selection&#xA;" enableElementExistenceValidation="true" name="Workflow to modify Cluster Mgmt Interface by User Selection" readyForProduction="true">
+    <certification>NONE</certification>
+    <uuid>23ea35ec-b746-42c3-80eb-f13cce9318b8</uuid>
+    <version>1.0.0</version>
+    <workflow-commands>
+        <workflow-command breakpointBeforeCommand="false" commandAlias="Modify Mgmt Interface for a Cluster" uuid="411a91d4-0fee-46c9-9de2-9bb8be9712c3">
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+            <command-definition>33930edc-a60c-448e-bebd-61c3d94dad61</command-definition>
+        </workflow-command>
+    </workflow-commands>
+    <find-charts/>
+    <minSoftwareVersions>OnCommand WFA 4.0</minSoftwareVersions>
+    <return-parameters/>
+    <rows>
+        <row>
+            <command-details>
+                <command-detail failureStrategy="CONTINUE_TO_NEXT_ROW">
+                    <command-mapped-objects/>
+                    <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+                    <other-parameters>
+                        <command-parameter-value value="getValueAt2D($Clusters, Index1, 3)">
+                            <parameter-definition>b03f1469-0ead-4264-ae48-b428231817b1</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="getValueAt2D($Clusters, Index1, 2)">
+                            <parameter-definition>dbe7cbcf-b9e7-441c-8163-af31b307daaf</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="getValueAt2D($Clusters, Index1, 1)">
+                            <parameter-definition>1b6b3079-24ea-4d46-8750-72bec6d5b941</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Password">
+                            <parameter-definition>257a4e51-a753-4442-998e-1a1fc3aa1539</parameter-definition>
+                        </command-parameter-value>
+                        <command-parameter-value value="$Username">
+                            <parameter-definition>8a09f6fe-0f3d-4829-a1a8-506f4dfcfdbc</parameter-definition>
+                        </command-parameter-value>
+                    </other-parameters>
+                    <workflow-command>411a91d4-0fee-46c9-9de2-9bb8be9712c3</workflow-command>
+                </command-detail>
+            </command-details>
+            <execution-condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="alwaysCondition"/>
+            <row-loop-info iteratorName="Index1" numberOfIterationsExpression="getSize(getColumnValues($Clusters,1))">
+                <loop-variables/>
+            </row-loop-info>
+        </row>
+    </rows>
+    <user-input-groups>
+        <user-input-group expandByDefault="false" name="">
+            <user-inputs>
+                <user-input defaultValue="Workflow execution will Modify Cluster Mgmt IP and further Cluster Connectivity will be lost on the Old IP Address" displayName="WARNING! " locked="false" mandatory="true" name="$Warning" uuid="2d11a10b-aad5-4aba-a75c-713c0f5f44e6">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="enumUserInputType" enumValues="Workflow execution will Modify Cluster Mgmt IP and further Cluster Connectivity will be lost on the Old IP Address" viewAsRadio="false"/>
+                </user-input>
+                <user-input defaultValue="" displayName="Select Clusters" locked="true" mandatory="true" name="$Clusters" uuid="d4c65451-721b-48f7-bef4-256dd2520c46">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="queryMultiSelectUserInputType" query="SELECT&#xA;    clusters.ip_address as 'Old Cluster Mgmt IP',&#xA;    clusters.new_ip_address as 'New Cluster Mgmt IP',&#xA;    clusters.new_netmask as 'Netmask',&#xA;    clusters.name as 'Old Cluster Name',&#xA;    clusters.new_name as 'New Cluster Name'&#xA;FROM&#xA;    all_clusters.clusters&#xA;WHERE&#xA;    clusters.ip_address NOT IN (&#xA;        SELECT&#xA;            completed_clusters.cluster_int_modified.old_ip&#xA;        FROM&#xA;            completed_clusters.cluster_int_modified&#xA;    )" rowSelectionType="Multiple"/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+        <user-input-group expandByDefault="true" name="Credentials">
+            <user-inputs>
+                <user-input defaultValue="admin" locked="false" mandatory="true" name="$Username" uuid="f639e76e-b0a4-43d3-92c6-26f53a151d36">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="stringUserInputType" regularExpression=""/>
+                </user-input>
+                <user-input defaultValue="netapp1!" locked="false" mandatory="true" name="$Password" uuid="bafcf237-12aa-48c2-906b-b82f56a41fc1">
+                    <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="passwordUserInputType"/>
+                </user-input>
+            </user-inputs>
+        </user-input-group>
+    </user-input-groups>
+    <workflow-constants>
+        <workflow-constant name="Warning" value="$Warning">
+            <description></description>
+        </workflow-constant>
+    </workflow-constants>
+</tabularWorkflow>

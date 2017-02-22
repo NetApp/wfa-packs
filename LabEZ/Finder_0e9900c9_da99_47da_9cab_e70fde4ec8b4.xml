@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<finder name="2f3dfd44-3df3-495f-b5f8-33977922bd25" privateFinder="true">
+    <certification>NONE</certification>
+    <uuid>0e9900c9-da99-47da-9cab-e70fde4ec8b4</uuid>
+    <version>1.0.0</version>
+    <attributes>
+        <attributes alias="name" columnName="name" sortingOrder="ASCENDING">
+            <filter>b255eba5-29e2-44c9-b382-bf5a3a719be2</filter>
+        </attributes>
+    </attributes>
+    <dictionary-entry>375b00fd-3965-431b-b07a-b3d6f364e001</dictionary-entry>
+    <filters>
+        <filter>b255eba5-29e2-44c9-b382-bf5a3a719be2</filter>
+    </filters>
+</finder>

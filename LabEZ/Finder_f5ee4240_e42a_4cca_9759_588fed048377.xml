@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<finder name="af50efda-7e50-4475-ae8d-d2158d60ab2d" privateFinder="true">
+    <certification>NONE</certification>
+    <uuid>f5ee4240-e42a-4cca-9759-588fed048377</uuid>
+    <version>1.0.0</version>
+    <attributes>
+        <attributes alias="ip_address" columnName="ip_address" sortingOrder="ASCENDING">
+            <filter>6127e2d7-86a7-41da-a988-f54409327b7d</filter>
+        </attributes>
+    </attributes>
+    <dictionary-entry>87540590-3e7c-4828-b8a7-77763c560d7a</dictionary-entry>
+    <filters>
+        <filter>6127e2d7-86a7-41da-a988-f54409327b7d</filter>
+    </filters>
+</finder>

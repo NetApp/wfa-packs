@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category name="Migration">
+    <certification>NONE</certification>
+    <uuid>9abc6dec-4f9f-41cb-bb3b-29fd4fc9cd9f</uuid>
+    <version>1.0.0</version>
+    <description>A set of workflows that help manage storage. This includes workflows for resizing storage, migrating volumes from their current locations to other storage systems and aggregates, and moving volumes non-disruptively in Cluster-Mode.</description>
+    <icon>migrate.png</icon>
+    <workflows>
+        <workflow>37d99a5a-c764-4183-85a2-3ae12fc1f87b</workflow>
+        <workflow>e6435b26-bf43-4723-9f39-67afd6ff84e8</workflow>
+        <workflow>91682640-922a-40c4-af61-bee3bfa87387</workflow>
+    </workflows>
+</category>

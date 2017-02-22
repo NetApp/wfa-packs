@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<scheme name="completed_clusters">
+    <certification>NONE</certification>
+    <uuid>c6d76a96-8852-4f85-80d7-be9e5631ebec</uuid>
+    <version>1.0.0</version>
+    <description></description>
+    <prettyName>Completed Clusters</prettyName>
+    <schemeType>READ_WRITE</schemeType>
+    <toBeReset>true</toBeReset>
+</scheme>

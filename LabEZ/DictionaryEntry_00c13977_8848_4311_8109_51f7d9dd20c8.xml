@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dictionaryEntry natural-key-case-sensitive="false" type="nodes_renamed">
+    <certification>NONE</certification>
+    <uuid>00c13977-8848-4311-8109-51f7d9dd20c8</uuid>
+    <version>1.0.0</version>
+    <dictionary-entry-properties>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="old_name" naturalKey="true" is-nullable="false">
+            <description></description>
+            <uuid>784b29d8-4601-42f8-97f9-8b617d4ae91e</uuid>
+        </dictionary-entry-property>
+        <dictionary-entry-property xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="objectAttribute" attribute-type="String" string-length="255" is-cacheable="true" name="new_name" naturalKey="false" is-nullable="false">
+            <description></description>
+            <uuid>abc93176-53ce-4082-aa8f-4972e345df2c</uuid>
+        </dictionary-entry-property>
+    </dictionary-entry-properties>
+    <scheme>c6d76a96-8852-4f85-80d7-be9e5631ebec</scheme>
+</dictionaryEntry>
