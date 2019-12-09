@@ -264,7 +264,7 @@
                 <user-input defaultValue="admin" locked="false" mandatory="true" name="$Username" uuid="35348183-9066-4566-b688-579328eeb0c3">
                     <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="stringUserInputType" regularExpression=""/>
                 </user-input>
-                <user-input defaultValue="netapp1!" locked="false" mandatory="true" name="$Password" uuid="827234b7-1fd2-43ab-ad00-e592930503f6">
+                <user-input defaultValue="*****" locked="false" mandatory="true" name="$Password" uuid="827234b7-1fd2-43ab-ad00-e592930503f6">
                     <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="passwordUserInputType"/>
                 </user-input>
             </user-inputs>
