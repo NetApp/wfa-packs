@@ -60,7 +60,7 @@
                 <user-input defaultValue="admin" locked="false" mandatory="true" name="$Username" uuid="f639e76e-b0a4-43d3-92c6-26f53a151d36">
                     <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="stringUserInputType" regularExpression=""/>
                 </user-input>
-                <user-input defaultValue="netapp1!" locked="false" mandatory="true" name="$Password" uuid="bafcf237-12aa-48c2-906b-b82f56a41fc1">
+                <user-input defaultValue="*****" locked="false" mandatory="true" name="$Password" uuid="bafcf237-12aa-48c2-906b-b82f56a41fc1">
                     <user-input-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="passwordUserInputType"/>
                 </user-input>
             </user-inputs>
